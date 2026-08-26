@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADU • Tələbə Məktubu</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;min-height:100vh;font-family:Arial,Helvetica,sans-serif;color:#17324d;
+  background:radial-gradient(circle at 15% 15%,rgba(7,152,216,.18),transparent 25%),
+             radial-gradient(circle at 85% 20%,rgba(22,164,91,.14),transparent 25%),
+             linear-gradient(135deg,#f5fbff,#eef5ff 50%,#fff8f5);
+}
+.top{text-align:center;padding:28px 20px 8px}
+.logo{width:118px;height:118px;object-fit:contain;filter:drop-shadow(0 12px 20px rgba(0,60,100,.15));animation:float 4s ease-in-out infinite}
+.uni{margin:10px 0 0;font-size:15px;font-weight:800;letter-spacing:2px;color:#176a93;text-transform:uppercase}
+.subtitle{font-size:12px;color:#7790a4;margin-top:5px}
+.stage{display:flex;justify-content:center;align-items:center;padding:38px 18px 70px;perspective:1400px}
+.scene{position:relative;width:min(650px,94vw);height:420px}
+.envelope{
+  position:absolute;left:50%;top:55%;width:min(540px,88vw);height:310px;
+  transform:translate(-50%,-50%);cursor:pointer;filter:drop-shadow(0 28px 35px rgba(24,62,91,.22));
+}
+.envelope-body{
+  position:absolute;inset:0;border-radius:20px;
+  background:linear-gradient(145deg,#0798d8,#006ab8);
+  overflow:visible;
+}
+.letter{
+  position:absolute;z-index:2;left:7%;width:86%;height:270px;top:20px;
+  padding:26px 30px;background:#fffdf7;border-radius:12px;
+  box-shadow:0 8px 25px rgba(0,0,0,.14);
+  transform:translateY(0);transition:transform .8s cubic-bezier(.22,.75,.15,1);
+}
+.flap{
+  position:absolute;z-index:5;left:0;top:0;width:100%;height:62%;
+  transform-origin:top center;transform-style:preserve-3d;
+  background:linear-gradient(150deg,#18a9e2,#0874bd);
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  transition:transform .8s cubic-bezier(.22,.75,.15,1);
+  border-radius:20px 20px 0 0;
+}
+.front{
+  position:absolute;z-index:4;inset:0;pointer-events:none;
+  background:linear-gradient(150deg,#0a8fd0,#0068b5);
+  clip-path:polygon(0 0,50% 53%,100% 0,100% 100%,0 100%);
+  border-radius:20px;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12);
+  transition:opacity .35s ease;
+}
+.envelope.open .flap{transform:rotateX(180deg);z-index:1}
+.envelope.open .letter{transform:translateY(-235px);z-index:6}
+.envelope.open .front{z-index:3}
+.letter h2{margin:0 0 5px;font-family:Georgia,serif;font-size:25px;color:#153d60}
+.line{height:2px;background:linear-gradient(90deg,#0798d8,#d85c52,#16a45b);margin:12px 0 16px}
+.info{display:grid;grid-template-columns:145px 1fr;gap:10px 12px;font-size:14px}
+.label{font-weight:800;color:#70879a}.value{font-weight:700;color:#203f5c}
+.seal{
+  position:absolute;right:24px;bottom:18px;width:58px;height:58px;border:2px dashed #8db1c8;
+  border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:900;color:#287aa5
+}
+.click{
+  position:absolute;z-index:7;left:50%;bottom:43px;transform:translateX(-50%);
+  color:white;font-size:13px;font-weight:800;background:rgba(255,255,255,.14);
+  padding:10px 17px;border-radius:999px;backdrop-filter:blur(6px);white-space:nowrap
+}
+.hint{text-align:center;margin-top:-25px;color:#60788d;font-size:13px}
+.card{
+  width:min(650px,92vw);margin:0 auto 45px;padding:25px;background:rgba(255,255,255,.76);
+  border:1px solid rgba(255,255,255,.9);border-radius:24px;
+  box-shadow:0 18px 50px rgba(38,82,112,.13);backdrop-filter:blur(16px)
+}
+.card h3{margin:0 0 17px;font-size:19px}
+.fake-card{
+  position:relative;padding:22px 23px 19px;border-radius:20px;min-height:180px;overflow:hidden;color:white;
+  background:linear-gradient(135deg,#153e63,#0a86c6 65%,#17a45b);box-shadow:0 14px 25px rgba(12,79,115,.2)
+}
+.chip{width:43px;height:31px;border-radius:7px;background:linear-gradient(135deg,#ddd,#fff,#aaa);margin:12px 0 23px}
+.card-number{font-size:21px;letter-spacing:3px;font-weight:700}
+.card-number input{
+  width:100%;background:transparent;border:0;outline:0;color:white;font:inherit;letter-spacing:3px
+}
+.card-number input::placeholder{color:rgba(255,255,255,.72)}
+.card-bottom{display:flex;justify-content:space-between;margin-top:20px;font-size:10px;letter-spacing:1px}
+.notice{margin-top:12px;font-size:11px;color:#7a8d9e}
+.footer{text-align:center;color:#8498a9;font-size:11px;padding:0 20px 28px}
+@keyframes float{50%{transform:translateY(-7px)}}
+@media(max-width:600px){
+  .letter{padding:20px;height:250px}.letter h2{font-size:20px}
+  .info{grid-template-columns:105px 1fr;font-size:12px}
+  .envelope.open .letter{transform:translateY(-205px)}
+  .card-number{font-size:16px;letter-spacing:2px}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <img class="logo" src="images.jfif" alt="Azərbaycan Dillər Universiteti">
+  <div class="uni">Azərbaycan Dillər Universiteti</div>
+  <div class="subtitle">Tələbə məktubu</div>
+</header>
+
+<main>
+  <section class="stage">
+    <div class="scene">
+      <div class="envelope" id="envelope" onclick="toggleLetter()">
+        <div class="envelope-body"></div>
+
+        <article class="letter">
+          <h2>Universitetə qəbul məktubu</h2>
+          <div class="line"></div>
+          <div class="info">
+            <div class="label">Ad, soyad</div><div class="value">Ömər Sevxanlı</div>
+            <div class="label">Universitet</div><div class="value">Azərbaycan Dillər Universiteti</div>
+            <div class="label">İxtisas</div><div class="value">Regionşünaslıq (ərəb ölkələri üzrə)</div>
+            <div class="label">Status</div><div class="value">Tələbə ✦</div>
+          </div>
+          <div class="seal">ADU<br>2026</div>
+        </article>
+
+        <div class="flap"></div>
+        <div class="front"></div>
+        <div class="click" id="clickText">✉ Məktubu aç</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="hint">Zərfə kliklə</div>
+
+  <section class="card">
+    <h3>💳 Şirinlik Göndərmək üçün kart</h3>
+    <div class="fake-card">
+      <div style="display:flex;justify-content:space-between;align-items:center;font-weight:800">
+        <span>ADU</span><span style="font-size:11px;opacity:.8"></span>
+      </div>
+      <div class="chip"></div>
+      <div class="card-number">
+        <input id="cardInput" maxlength="19" inputmode="numeric" placeholder="4098 5844 9405 0378">
+      </div>
+      <div class="card-bottom">
+        <span>ÖMƏR SEVXANLI</span><span>ADU • 2026</span>
+      </div>
+    </div>
+    <button class="copy-btn" onclick="copyCard()">📋 Kartı kopyala</button>
+<div id="copyStatus" class="copy-status"></div>
+    <div class="notice"></div>
+  </section>
+</main>
+
+<div class="footer">© 2026 • ADU</div>
+
+<script>
+function toggleLetter(){
+  const envelope=document.getElementById('envelope');
+  const text=document.getElementById('clickText');
+  envelope.classList.toggle('open');
+  text.textContent=envelope.classList.contains('open')?'✉ Məktubu bağla':'✉ Məktubu aç';
+}
+document.getElementById('cardInput').addEventListener('input',function(){
+  const value=this.value.replace(/\D/g,'').slice(0,16);
+  this.value=value.replace(/(.{4})/g,'$1 ').trim();
+});
+</script>
+</body>
+</html>
